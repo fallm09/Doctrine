@@ -7,9 +7,27 @@ class Autoloader
     }
    static function autoload($class)
    {
+     // echo $class;
+     if(file_exists("src/model/".$class.".php"))
+     {
+       require_once "src/model/".$class.".php"; //pour Comptedb.php  
+     }
+   
+    else if(file_exists("src/controller/".$class.".php"))
+    {
+        require_once "src/controller/".$class.".php";
+    }
+    
+    //namespace
+     if(file_exists(str_replace("\\","/",$class.".php")));
+    {
+        //var_dump(str_replace("\\","/",$class.".php"));
+        //die;
+        require_once str_replace("\\","/",$class.".php");
+    }
 
    }
-
+  
 }
 Autoloader::register();
 
